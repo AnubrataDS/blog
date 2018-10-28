@@ -487,6 +487,11 @@ h5,
 h6 {
   color: #555;
 }
+#sketchHolder {
+  position: fixed;
+  top: 0px;
+  z-index: -1;
+}
 .site-header {
   padding: 2.5rem 0;
   border-bottom: 1px solid #e1e1e1;
@@ -494,7 +499,9 @@ h6 {
 }
 .site-header.header-background {
   border-bottom: 0;
-  background-color: #808080;
+  background-color: transparent;
+  position: relative;
+  z-index: 0;
   background-position: center center;
   background-attachment: scroll;
   -webkit-background-size: cover;
