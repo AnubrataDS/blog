@@ -13,14 +13,14 @@ var s = function (sketch) {
 
   sketch.setup = function () {
     sketch.createCanvas(w, h);
-    scale = 100;
+    scale = 130;
     rows = (h / scale);
     cols = (w / scale*2);
     noiseScale = 900;
     nums = rows * cols;
     console.log(nums);
     sketch.noStroke();
-    sketch.background(15, 15, 15);
+    sketch.background(20,19,31);
     for (var i = 0; i < nums; i++) {
       particles_a[i] = new Particle(sketch.random(0, w/2), sketch.random(0, h),this);
       particles_b[i] = new Particle(sketch.random(0, w/2), sketch.random(0, h),this);
@@ -29,7 +29,7 @@ var s = function (sketch) {
   };
 
   sketch.draw = function () {
-    sketch.fill(0,4);
+    sketch.fill(20,19,31,4);
     sketch.rect(0, 0, w, h);
     for (var i = 0; i < nums; i++) {
       var radius = sketch.map(i, 0, nums, 1, 3);
@@ -50,8 +50,8 @@ var s = function (sketch) {
 }
 
 function Particle(x, y,sketch) {
-  this.pos = sketch.createVector(x, y);
-  this.age = sketch.random(500,1000);
+  this.pos = {x:x,y:y};
+  this.age = Math.random()*500+500;
   this.move = function () {
     var angle = sketch.noise(this.pos.x / noiseScale, this.pos.y / noiseScale) * sketch.TWO_PI * noiseScale;
     this.pos.x += Math.cos(angle)*speed ;
@@ -62,9 +62,9 @@ function Particle(x, y,sketch) {
 
   this.checkEdge = function () {
     if ((this.pos.x > w/2) || (this.pos.x < 0) || (this.pos.y > h) || (this.pos.y < 0) ||(this.age<=0)) {
-      this.pos.x = sketch.random(0, w/2);
-      this.pos.y = sketch.random(0, h)
-      this.age = sketch.random(500,1000);
+      this.pos.x = Math.random()*w/2;
+      this.pos.y = Math.random()*h;
+      this.age = sketch.random()*500 + 500;
     }
   }
 
